@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <ion-icon name="leaf"></ion-icon>
+      Food Log
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<ion-card>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Calorie Count</ion-label>
+    </ion-list-header>
+  <ion-progress-bar [value]="progress"></ion-progress-bar>
+  </ion-list>
+</ion-card>
+<ion-card>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Food Eaten Today:</ion-label>
+    </ion-list-header>
+    <ion-item>
+    <ion-label>
+      <h2>Fish</h2>
+      <h3>10 Piece Chicken McNuggets</h3>
+      <h4>Pho</h4>
+      <h5>French Fries</h5>
+      <h6>Snickers Bar</h6>
+    </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-card>
+
+
+<ion-item>
+  <ion-input placeholder="Enter Food"></ion-input>
+<div class="ion-padding">
+  <ion-button expand="block" type="submit" class="ion-no-margin">Add Food</ion-button>
+</div>
+</ion-item>
+
+      <ion-button (click) ="presentActionSheet()" expand="block">Options</ion-button>
+</ion-content>
