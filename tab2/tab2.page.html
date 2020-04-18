@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
 
 <ion-card>
   <ion-list>
@@ -43,4 +43,91 @@
 </ion-item>
 
       <ion-button (click) ="presentActionSheet()" expand="block">Options</ion-button>
+
+      
+
+
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-input placeholder="Enter Food" [(ngModel)]="foodName"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-input placeholder="Enter Calories" [(ngModel)]="foodCalories"></ion-input>
+            </ion-item>
+          </ion-col>
+
+        </ion-row>
+        <ion-row>
+          <ion-col text-center>
+            <ion-button (click)="CreateRecord()" [disabled]="!foodName || !foodCalories">
+              <ion-icon size="small" slot="icon-only" name="add"></ion-icon>
+              &nbsp;Create Record
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+
+
+
+      <ion-card *ngFor="let item of foods">
+        <span *ngIf="!item.isEdit; else elseBlock">
+          <ion-card-header>
+            <ion-card-title>{{item.Name}} - {{item.Calories}} calories</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+     
+            <ion-button shape="round" color="secondary" size="small" (click)="EditRecord(item)">
+              <ion-icon size="small" slot="icon-only" name="create"></ion-icon>
+     
+            </ion-button>
+            <ion-button shape="round" color="danger" size="small" (click)="RemoveRecord(item.id)">
+              <ion-icon size="small" slot="icon-only" name="trash"></ion-icon>
+     
+            </ion-button>
+          </ion-card-content>
+        </span>
+        <ng-template #elseBlock>
+          <ion-card-header>
+            <ion-card-title>
+              <ion-grid>
+                <ion-row>
+                  <ion-col>
+                    Edit
+                  </ion-col>
+                  <ion-col>
+                    <ion-button fill="clear" color="medium" size="small" (click)="item.isEdit = false">
+                      Cancel
+                    </ion-button>
+                  </ion-col>
+                  <ion-col>
+                    <ion-button fill="outline" color="success" size="small" (click)="UpdateRecord(item)">
+                      Update
+                    </ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-item>
+              <ion-label><strong>Name</strong></ion-label>
+              <ion-input type="text" [(ngModel)]="item.EditName"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label><strong>Calories</strong></ion-label>
+              <ion-input type="text" [(ngModel)]="item.EditCalories"></ion-input>
+            </ion-item>
+
+          </ion-card-content>
+        </ng-template>
+      </ion-card>
+     
+
+
+
 </ion-content>
